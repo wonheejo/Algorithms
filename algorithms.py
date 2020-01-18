@@ -434,4 +434,18 @@ for word in words:
 print(count)
 """
 
+# Problem 2908: Biggest number of the two reversed integers
+x, y = input().split()
+
+def reverse(x, y):
+    a = x[::-1]
+    b = y[::-1]
+
+    if int(a) > int(b):
+        print(a)
+    else:
+        print(b)
+
+reverse(x, y)
+
 
