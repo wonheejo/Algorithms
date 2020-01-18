@@ -418,11 +418,20 @@ mostcount(x)
 # Test cases:
 # HelLoOTherE
 # Mississipi
-"""
+
 
 # Problem 1152: Count number of words
-from nltk import tokenize
 
 x = input()
+count = 0
 
-tokenize.sent_tokenize(x)
+words = x.split()
+
+for word in words:
+    count += 1
+    #print(word)
+
+print(count)
+"""
+
+
