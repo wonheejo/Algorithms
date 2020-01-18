@@ -372,29 +372,57 @@ for i in range(num):
         for k in range(int(third[i])):
             print(second[i][j], end='')
     print('')
-"""
 
-# January 16th 2020
-# Problem 1157: Most used alphabet
+
+# January 18th 2020
+# Problem 1157: Print most used alphabet
 
 x = input()
 
-
 def mostcount(str):
-    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-                'v', 'w', 'x', 'y', 'z']
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+                'V', 'W', 'X', 'Y', 'Z']
+    check = [0] *26
     alpha = []
+    max = -1
     count = 0
     for c in str:
         alpha.append(c)
 
+    # Count the number of appearance of each letters into the check list
     for i in range(len(alpha)):
-        for j in range(i + 1, len(alpha)):
-            if alpha[i] == alpha[j]:
-                print(i, alpha[i], alpha[j])
-                count += 1
-    print(count)
+        for j in range(26):
+            if alpha[i].casefold() == alphabet[j].casefold():
+                check[j] = check[j] + 1
 
-#Test to see if this got uploaded
-#Second test
+    # Look for highest number count in check list
+    for i in range(26):
+        if check[i] > max:
+            max = check[i]
+            store = alphabet[i]
+
+    # Check for duplicate highest number
+    for i in range(26):
+        if check[i] == max:
+            for j in range(i+1, 26):
+                if check[i] == check[j]:
+                    count +=1
+                    #print(alphabet[i], ':', check[i], alphabet[j], ':', check[j])
+
+    if count > 0:
+        print('?')
+    else:
+        print(store)
+
 mostcount(x)
+# Test cases:
+# HelLoOTherE
+# Mississipi
+"""
+
+# Problem 1152: Count number of words
+from nltk import tokenize
+
+x = input()
+
+tokenize.sent_tokenize(x)
