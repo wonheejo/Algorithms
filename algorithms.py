@@ -432,7 +432,6 @@ for word in words:
     #print(word)
 
 print(count)
-"""
 
 # Problem 2908: Biggest number of the two reversed integers
 x, y = input().split()
@@ -448,4 +447,28 @@ def reverse(x, y):
 
 reverse(x, y)
 
+"""
 
+# January 21 2020
+# Problem 5622:
+
+x = input()
+
+def dial(x):
+    alpha = []
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+                'V', 'W', 'X', 'Y', 'Z']
+    number = [3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10, 10, 10, 10]
+    temp = 0
+
+    for i in x:
+        alpha.append(i)
+
+    for i in range(len(alpha)):
+        for j in range(len(alphabet)):
+            if alpha[i].casefold() == alphabet[j].casefold():
+                temp = number[j] + temp
+
+    print(temp)
+
+dial(x)
