@@ -447,7 +447,6 @@ def reverse(x, y):
 
 reverse(x, y)
 
-"""
 
 # January 21 2020
 # Problem 5622:
@@ -472,3 +471,35 @@ def dial(x):
     print(temp)
 
 dial(x)
+"""
+
+"""
+# Problem 2941: Croatian Alphabet
+# Incomplete Algorithm
+x = input()
+
+print(len(x))
+alpha = []
+
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+v1 = 'c='
+v2 = 'c-'
+v3 = 'dz='
+v4 = 'd-'
+v5 = 'lj'
+v6 = 'nj'
+v7 = 's='
+v8 = 'z='
+count = 0
+
+for i in range(len(x)):
+    if (v1 in x) or (v2 in x) or (v3 in x) or (v4 in x) or (v5 in x) or (v6 in x) or (v7 in x) or (v8 in x):
+        count += 1
+    elif (x.isalpha()):
+        count += 1
+
+print(count)
+"""
+
+
+
