@@ -82,7 +82,7 @@ for i in range(10001):
 # January 30th 2020
 # Problem 2108: Statistic
 # Incomplete
-
+"""
 from collections import Counter
 x = int(sys.stdin.readline())
 y = []
@@ -134,7 +134,7 @@ elif len(dup) == 0 and len(y) > 1:
 
 # Print the difference between max and min of list
 print((max(y) - min(y)))
-
+"""
 
 """
 # Problem 1427
@@ -244,5 +244,63 @@ for i in range(len(dup)):
     merge(to_change)
     print(to_change)
     del to_change[:]
-"""
 
+
+# January 31th 2020
+# Problem 11651: Sorting Coordinates 2(sort by y value)
+import sys
+
+x = int(input())
+y = []
+for i in range(x):
+    y.append(list(map(int, sys.stdin.readline().split())))
+
+# Used Python's built in sorting function
+y3 = sorted(y, key=lambda k: [k[1], k[0]])
+
+for i in range(x):
+    print(*y3[i])
+
+
+
+# Problem 1181: Sorting text into difference in length
+
+import sys
+x = int(sys.stdin.readline())
+y = []
+y_sorted = []
+for i in range(x):
+    y.append(sys.stdin.readline())
+
+y_set = set(y)
+
+for i in y_set:
+    y_sorted.append(i)
+
+y_sorted.sort()
+y_sorted = sorted(y_sorted, key=len)
+
+
+for i in range(len(y_sorted)):
+    print(y_sorted[i], end='')
+
+
+# Problem 10814: Sorting by age
+
+import sys
+
+x = int(sys.stdin.readline())
+y = []
+y1 = []
+for i in range(x):
+    y.append(sys.stdin.readline().split())
+
+# Made my own function to use as a key which returns the first value of in the list of a list
+def func(s):
+    return int(s[0])
+y1 = sorted(y, key=func)
+
+for i, j in y1:
+    print(i, j)
+
+"""
