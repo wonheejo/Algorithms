@@ -110,32 +110,52 @@ for i in range(x):
         print('{}0{}' .format(floor[i], roomnumber[i]))
     else:
         print('{}{}' .format(floor[i], roomnumber[i]))
-"""
 
+
+# Febuary 7th 2020
 # Problem 2775: Apartments women's society
-import sys
+import sys, math
 
 x = int(input())
 floor = []
 number = []
-cond = [[0] *14 for i in range(14)]
 for i in range(x):
-    floor.append(list(map(int, sys.stdin.readline().split())))
-    number.append(list(map(int, sys.stdin.readline().split())))
+    floor.append(int(sys.stdin.readline()))
+    number.append(int(sys.stdin.readline()))
 
-print(floor)
-print(number)
-sum = 0
+for i in range(x):
+    integer = 1
+    total = number[i]*(number[i]+1)
+    #print('room number:', number[i], 'sum of total:', total)
+    for j in range(floor[i]):
+        #print('floor number:', floor[i])
+        integer = (1/(j+2))*integer
+        if j == 0:
+            total = total
+        else:
+            total = total*(number[i]+(j+1))
+        #print('sum:', total*integer)
 
-for i in range(14):
-    for j in range(1, 15):
-        sum = (j*(j+1))//2
-        cond.append(sum)
+    final = math.ceil(total*integer)
+    print(final)
 
-def recur2(a, b):
-    if a == 1 and b == 1:
-        return 1
-    else:
-        return(recur2(a-1, b-1)+recur2(a-2, b-2))
+"""
 
-recur2(2, 2)
+# Problem 1011: Fly me to alpha centauri
+import sys
+
+x = int(input())
+coor = []
+warpdist = []
+for i in range(x):
+    coor.append(list(map(int, sys.stdin.readline().split())))
+print(coor)
+
+for i in range(x):
+    k = 1
+    warp = 0
+    warpdist.append(coor[i][1] - coor[i][0]-2)
+
+
+print(warpdist)
+
