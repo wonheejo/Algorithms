@@ -247,5 +247,43 @@ for i in range(x):
             #print('{} is a prime so incremented, tick count: {}' .format(prime[i], tick))
 
 print(count)
+
+
+# Problem 2581: Finding Prime numbers 2
+
+x = int(input())
+y = int(input())
+
+z = y-x
+
+prime = []
+count = 0
+min = 10001
+
+for i in range(x, y+1):
+    if i == 2:
+        prime.append(i)
+    elif(i > 2) and (i%2 != 0):
+        tick = 0
+        for j in range(1, i+1):
+            check = i%j
+            if check == 0:
+                tick += 1
+            if tick > 2:
+                break
+        if tick <= 2:
+            prime.append(i)
+    if i in prime:
+        #print('{} is in prime' .format(i))
+        if i < min:
+            min = i
+
+if len(prime) == 0:
+    print(-1)
+else:
+    print(sum(prime))
+    print(min)
+
 """
+
 
