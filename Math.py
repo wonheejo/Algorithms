@@ -221,4 +221,31 @@ for i in range(x):
 for i in range(x):
     print(warpdist[i])
 
+
+# Problem 1978: Prime numbers
+import sys, math
+x = int(input())
+
+prime = list(map(int, sys.stdin.readline().split()))
+
+count = 0
+for i in range(x):
+    if prime[i] == 2:
+        count += 1
+    elif (prime[i] > 2) and (prime[i]%2 != 0):
+        #print(prime[i])
+        tick = 0
+        for j in range(1, prime[i]+1):
+            check = prime[i]%j
+            #print('{} % {} = {}' .format(prime[i], j, check))
+            if check == 0:
+                tick += 1
+            if tick > 2:
+                break
+        if tick <= 2:
+            count += 1
+            #print('{} is a prime so incremented, tick count: {}' .format(prime[i], tick))
+
+print(count)
 """
+
