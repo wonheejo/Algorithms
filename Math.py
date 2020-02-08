@@ -139,23 +139,86 @@ for i in range(x):
     final = math.ceil(total*integer)
     print(final)
 
-"""
 
+# Febuary 8th 2020
 # Problem 1011: Fly me to alpha centauri
-import sys
+# Tried to look for the warp count using iterative method but it didnt succeed....
+import sys, math
 
 x = int(input())
 coor = []
 warpdist = []
 for i in range(x):
     coor.append(list(map(int, sys.stdin.readline().split())))
+
 print(coor)
 
 for i in range(x):
+    z = coor[i][1]
+    y = coor[i][0]
+    dist = z-y
+    print(math.ceil((z-y)/2))
     k = 1
     warp = 0
-    warpdist.append(coor[i][1] - coor[i][0]-2)
+    print('Current distance: {}' .format(dist))
+    while dist > 0:
+        if dist > math.ceil((z-y)//2):
+            print('if comp')
+            warp += 1
+            dist -= k
+            print('warps done: {}, warped length: {}, current distance: {}'.format(warp, k, dist))
+
+            if dist > math.ceil(((z-y)/2)) and dist-(k+1) >= (k)*(k+1)/2:
+                k += 1
+            elif k >= 2 and (dist <= 5):
+                k -= 1
+            else:
+                k = k
+            print('next jump length: {}' .format(k))
+        else:
+            print('else comp')
+            warp += 1
+            dist -= k
+            print('warps done: {}, warped length: {}, current distance: {}'.format(warp, k, dist))
+            if dist <= 2:
+                k = 1
+            elif dist > 2 and k <= 2:
+                k = k
+            else:
+                k -= 1
+
+            print('next jump length: {}' .format(k))
+
+    warpdist.append(warp)
 
 
-print(warpdist)
+import sys, math
 
+x = int(input())
+coor = []
+warpdist = []
+for i in range(x):
+    coor.append(list(map(int, sys.stdin.readline().split())))
+
+for i in range(x):
+    y = coor[i][1]
+    z = coor[i][0]
+    dist = y-z
+    n = 1
+    warp = 1
+    while True:
+        if dist >= (n**2)-(n+1) and dist <= (n**2)+n:
+            if dist <= (n**2):
+                warpdist.append(warp)
+                break
+            else:
+                warp += 1
+                warpdist.append(warp)
+                break
+        warp += 2
+        n += 1
+
+for i in range(x):
+    print(warpdist[i])
+
+"""
