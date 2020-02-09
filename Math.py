@@ -311,4 +311,42 @@ for i in prime:
     if i >= x:
         print(i)
 print(finish - start)
+
+
+# Problem 4989: Finding primes Bertrands postulate
+
+import sys, math, time
+inputs = []
+while True:
+    temp = int(input())
+    if temp == 0:
+        break
+    else:
+        inputs.append(temp)
+
+prime = set()
+start = time.time()
+
+
+for i in range(2, 246914):
+    prime.add(i)
+
+for i in range(2, int(math.sqrt(246914)+1)):
+    if i in prime:
+        for j in range(i*2, 246918, i):
+            if j in prime:
+                prime.remove(j)
+
+for j in inputs:
+    upper = j*2
+    tempset = set()
+    for i in range(j+1, upper+1):
+        tempset.add(i)
+
+    print(len(tempset.intersection(prime)))
+
+
+finish = time.time()
+
+print(finish - start)
 """
