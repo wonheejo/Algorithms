@@ -284,6 +284,31 @@ else:
     print(sum(prime))
     print(min)
 
+
+# Febuary 9th 2020
+# Problem 1929: Find and print prime numbers
+import sys, math, time
+x, y = sys.stdin.readline().split()
+x = int(x)
+y = int(y)
+prime = set()
+
+start = time.time()
+
+for i in range(2, y + 1):
+    prime.add(i)
+
+
+for i in range(2, int(math.sqrt(y)+1)):
+    if i in prime:
+        for j in range(i*2, y+2, i):
+            if j in prime:
+                prime.remove(j)
+
+finish = time.time()
+
+for i in prime:
+    if i >= x:
+        print(i)
+print(finish - start)
 """
-
-
