@@ -82,7 +82,7 @@ for i in range(10001):
 # January 30th 2020
 # Problem 2108: Statistic
 # Incomplete
-"""
+
 from collections import Counter
 x = int(sys.stdin.readline())
 y = []
@@ -134,7 +134,7 @@ elif len(dup) == 0 and len(y) > 1:
 
 # Print the difference between max and min of list
 print((max(y) - min(y)))
-"""
+
 
 """
 # Problem 1427

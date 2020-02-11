@@ -350,3 +350,45 @@ finish = time.time()
 
 print(finish - start)
 """
+
+# Problem 9020: Goldbach conjecture
+import sys, time, math
+
+x = int(input())
+even = []
+
+for i in range(x):
+    even.append(int(sys.stdin.readline()))
+
+prime = set()
+
+start = time.time()
+
+for i in range(2, 10000):
+    prime.add(i)
+
+for i in range(2, int(math.sqrt(10000)+1)):
+    if i in prime:
+        for j in range(i*2, 10002, i):
+            if j in prime:
+                prime.remove(j)
+end = time.time()
+start2 = time.time()
+for i in even:
+    max = 0
+    tempset = []
+
+    for j in range(i, i+1):
+        for k in prime:
+            if k < j:
+                tempset.append(k)
+
+    for j in range((len(tempset)//2)+1):
+        if tempset[j] + (i-tempset[j]) == i and tempset[j] > max and (i-tempset[j] in tempset) and tempset[j] <= (i-tempset[j]):
+            max = tempset[j]
+    print(max, i-max)
+
+finish = time.time()
+
+print('time for finding primes:', end - start)
+print('time for finding the sums:', finish - start2)
