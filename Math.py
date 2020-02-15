@@ -349,7 +349,7 @@ for j in inputs:
 finish = time.time()
 
 print(finish - start)
-"""
+
 
 # Problem 9020: Goldbach conjecture
 import sys, time, math
@@ -360,10 +360,9 @@ even = []
 for i in range(x):
     even.append(int(sys.stdin.readline()))
 
-prime = set()
-
+# Uses Eratosthanes's sieve to find all the primes upto 10000 just once
 start = time.time()
-
+prime = set()
 for i in range(2, 10000):
     prime.add(i)
 
@@ -373,22 +372,23 @@ for i in range(2, int(math.sqrt(10000)+1)):
             if j in prime:
                 prime.remove(j)
 end = time.time()
+
+# Using the primes found just once, the loop below searches through the set of primes and finds the correct pairs
 start2 = time.time()
 for i in even:
     max = 0
     tempset = []
 
-    for j in range(i, i+1):
-        for k in prime:
-            if k < j:
-                tempset.append(k)
-
-    for j in range((len(tempset)//2)+1):
-        if tempset[j] + (i-tempset[j]) == i and tempset[j] > max and (i-tempset[j] in tempset) and tempset[j] <= (i-tempset[j]):
-            max = tempset[j]
+    # Looking through the set for the i-th prime and adds it into a list
+    for k in prime:
+        if (k + (i-k) == i) and (k > max) and (i-k) in prime and (k <= (i-k)):
+            max = k
     print(max, i-max)
+
 
 finish = time.time()
 
 print('time for finding primes:', end - start)
 print('time for finding the sums:', finish - start2)
+"""
+
