@@ -390,5 +390,135 @@ finish = time.time()
 
 print('time for finding primes:', end - start)
 print('time for finding the sums:', finish - start2)
+
+
+# February 15th 2020
+# Problem 1085: Shortest path to edge of rectangle
+import sys
+x, y, w, h = map(int, sys.stdin.readline().split())
+print(x, y, w, h)
+
+distx1 = x-0
+disty1 = y-0
+distx2 = w-x
+disty2 = h-y
+
+# print('dist x-0: {}, dist y-0: {}, dist w-x: {}, dist h-y: {}' .format(distx1, disty1, distx2, disty2))
+
+if distx1 <= distx2:
+    temp1 = distx1
+else:
+    temp1 = distx2
+
+if disty1 <= disty2:
+    temp2 = disty1
+else:
+    temp2 = disty2
+
+if temp1 <= temp2:
+    print(temp1)
+else:
+    print(temp2)
+
+
+# Problem 3009: Finish the rectangle
+import sys, math
+coor = []
+for i in range(3):
+    coor.append(list(map(int, sys.stdin.readline().split())))
+
+for i in range(3):
+    for j in range(i+1, 3):
+        if coor[i][0] == coor[j][0]:
+            temp1 = coor[i]
+            temp2 = coor[j]
+
+for i in range(3):
+    if coor[i] != temp1 and coor[i] != temp2:
+        temp3 = coor[i]
+height = abs(temp1[1] - temp2[1])
+
+if temp3[1] > height:
+    last = temp3[1] - height
+else:
+    last = temp3[1] + height
+
+print(temp3[0], last)
+
+
+# Problem 4153: Right angled triangle
+import sys
+tri = []
+
+while True:
+    temp = list(map(int, sys.stdin.readline().split()))
+
+    if temp[0]==0:
+        break
+    else:
+        tri.append(temp)
+
+lens = len(tri)
+
+for i in range(lens):
+    x = tri[i][0]
+    y = tri[i][1]
+    z = tri[i][2]
+    if x*x == y*y + z*z:
+        print('right')
+    elif (y*y == x*x + z*z):
+        print('right')
+    elif (z*z == x*x + y*y):
+        print('right')
+    else:
+        print('wrong')
+
+
+ # Problem 3053:
+import math
+x = int(input())
+
+print('{:.6f}' .format(math.pi*(x*x)))
+print('{:.6f}' .format(x*x*2))
 """
 
+# Problem 1002: Turret
+import sys, math
+x = int(input())
+coor = []
+for i in range(x):
+    coor.append(list(map(int, sys.stdin.readline().split())))
+
+for i in range(x):
+    x1 = coor[i][0]
+    y1 = coor[i][1]
+    r1 = coor[i][2]
+    x2 = coor[i][3]
+    y2 = coor[i][4]
+    r2 = coor[i][5]
+    count = 0
+    minr = 0
+    maxr = 0
+    if r1 != r2 and r1 < r2:
+        minr = r1
+        maxr = r2
+    elif r1 != r2 and r1 > r2:
+        minr = r2
+        maxr = r1
+
+    dist1 = math.sqrt(abs(x1-x2)*abs(x1-x2) + abs(y1-y2)*abs(y1-y2))
+    dist2 = r1 + r2
+    if dist1 == dist2: # When distance between two points is equal to r1+r2
+        count = 1
+    elif dist1 > dist2: # When distance between two point is larger than r1+r2
+        count = 0
+    else: # When the distance between two point is smaller than r1+r2
+        if (dist1+minr) < maxr:
+            count = 0
+        elif (dist1+minr) == maxr and r1 != r2:
+            count = 1
+        elif dist1 == 0 and r1 == r2:
+            count = -1
+        else:
+            count = 2
+    print(count)
