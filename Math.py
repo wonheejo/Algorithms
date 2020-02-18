@@ -480,7 +480,7 @@ x = int(input())
 
 print('{:.6f}' .format(math.pi*(x*x)))
 print('{:.6f}' .format(x*x*2))
-"""
+
 
 # Problem 1002: Turret
 import sys, math
@@ -522,3 +522,4 @@ for i in range(x):
         else:
             count = 2
     print(count)
+"""
