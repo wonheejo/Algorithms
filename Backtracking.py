@@ -47,5 +47,28 @@ def shownum(index, x, y):
         nums[i] = 0
 
 shownum(0, x, y)
+
+
+# Problem 15651: N and M (3)
+import sys
+x, y = map(int, sys.stdin.readline().split())
+nums = [0 for i in range(x+1)]
+check = [0 for i in range(y)]
+
+def shownum(index, x, y):
+    if index == y:
+        print(*check)
+        return
+
+    for i in range(1, len(nums)):
+
+        check[index] = i
+        nums[i] = 1
+        shownum(index+1, x, y)
+        nums[i] = 0
+
+
+shownum(0, x, y)
 """
+
 
