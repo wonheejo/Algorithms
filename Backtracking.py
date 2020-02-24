@@ -99,4 +99,30 @@ def shownum(index, x, y):
         shownum(index+1, x, y)
 
 shownum(0, x, y)
+
+
+# Problem 15654: N and M (5)
+import sys
+x, y = map(int, sys.stdin.readline().split())
+nums = list(map(int, sys.stdin.readline().split()))
+nums.sort()
+check = [0 for i in range(y)]
+isused = [0 for i in range(x+1)]
+
+def shownum(index, nums, x, y):
+    if index == y:
+        print(*check)
+        return
+
+    for i in range(x):
+        if isused[i] == True:
+            continue
+
+        check[index] = nums[i]
+
+        isused[i] = True
+        shownum(index+1, nums, x, y)
+        isused[i] = False
+
+shownum(0, nums, x, y)
 """
