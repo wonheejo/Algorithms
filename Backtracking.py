@@ -69,6 +69,34 @@ def shownum(index, x, y):
 
 
 shownum(0, x, y)
+
+
+# Febuary 24th 2020
+# Problem 15652: N and M (4)
+import sys
+x, y = map(int, sys.stdin.readline().split())
+
+nums = [0 for i in range(x+1)]
+check = [0 for i in range(y)]
+
+def shownum(index, x, y):
+    if index == y:
+        print(*check)
+        return
+
+    for i in range(1, len(nums)):
+        #print('inside for loop')
+        #print('i:{}   check[index]: {}, index: {}, index-1: {}' .format(i, check[index-1], index, index-1))
+
+        if index >= 1 and i >= check[index-1]:
+            check[index] = i
+        elif index == 0:
+            check[index] = i
+        else:
+            continue
+
+        #print('check: {}' .format(check))
+        shownum(index+1, x, y)
+
+shownum(0, x, y)
 """
-
-
