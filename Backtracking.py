@@ -125,4 +125,76 @@ def shownum(index, nums, x, y):
         isused[i] = False
 
 shownum(0, nums, x, y)
+
+
+# Problem 15655: N and M (6)
+import sys
+x, y = map(int, sys.stdin.readline().split())
+nums = list(map(int, sys.stdin.readline().split()))
+nums.sort()
+isused = [0 for i in range(x+1)]
+check = [0 for i in range(y)]
+duplicate = []
+
+def shownum(index, nums, x, y):
+    if index == y:
+        temp = sorted(check)
+        if temp not in duplicate:
+            print(*temp)
+            duplicate.append(temp[:])
+        return
+
+    for i in range(x):
+        if isused[i] == True:
+            continue
+        check[index] = nums[i]
+        isused[i] = True
+        shownum(index+1, nums, x, y)
+        isused[i] = False
+
+shownum(0, nums, x, y)
+
+
+# Problem 15656: N and M (7)
+import sys
+x, y = map(int, sys.stdin.readline().split())
+nums = list(map(int, sys.stdin.readline().split()))
+nums.sort()
+check = [0 for i in range(y)]
+
+def shownum(index, y):
+    if index == y:
+        print(*check)
+        return
+
+    for i in range(x):
+        check[index] = nums[i]
+        shownum(index+1, y)
+shownum(0, y)
+
+
+# Problem 15657: N and M (8)
+import sys
+x, y = map(int, sys.stdin.readline().split())
+nums = list(map(int, sys.stdin.readline().split()))
+nums.sort()
+check = [0 for i in range(y)]
+
+def shownum(index, y):
+    if index == y:
+        print(*check)
+        return
+
+    for i in range(x):
+
+        if index>=1 and nums[i] >= check[index-1]:
+            check[index] = nums[i]
+        elif index == 0:
+            check[index] = nums[i]
+        else:
+            continue
+
+        shownum(index+1, y)
+
+shownum(0, y)
 """
