@@ -197,4 +197,46 @@ def shownum(index, y):
         shownum(index+1, y)
 
 shownum(0, y)
+
+
+# Febuary 25th 2020
+# Problem 9663: N-Queen Problem
+
+import sys, time
+x = int(sys.stdin.readline())
+y = x-1 # Used for counting diagonals
+
+start = time.time()
+board = [[0 for i in range(x)] for j in range(x)]
+row = [0 for i in range(x)]
+diagrightB = [0 for i in range(x+y)]
+diagleftT = [0 for i in range(x+y)]
+count = 0
+
+def solvequeen(x, board, col):
+    global count
+    if col == x:
+        count += 1
+        return
+
+    for i in range(x):
+
+        if 1 in board[i] or diagleftT[i-col+(x-1)] == 1 or diagrightB[i+col] == 1:
+            continue
+
+        board[i][col] = 1
+        row[col] = 1
+        diagrightB[i+col] = 1
+        diagleftT[i-col+(x-1)] = 1
+
+        solvequeen(x, board, col+1)
+        board[i][col] = 0
+        row[col] = 0
+        diagrightB[i+col] = 0
+        diagleftT[i-col+(x-1)] = 0
+
+solvequeen(x, board, 0)
+finish = time.time()
+print(count)
+print(finish-start)
 """
