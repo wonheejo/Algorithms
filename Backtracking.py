@@ -230,6 +230,7 @@ def solvequeen(x, board, col):
         diagleftT[i-col+(x-1)] = 1
 
         solvequeen(x, board, col+1)
+
         board[i][col] = 0
         row[col] = 0
         diagrightB[i+col] = 0
@@ -240,3 +241,76 @@ finish = time.time()
 print(count)
 print(finish-start)
 """
+
+# Problem 2580: Sudoku
+import sys, time
+board = []
+
+for i in range(9):
+    board.append(list(map(int, sys.stdin.readline().split())))
+
+start = time.time()
+
+def find_zero(board):
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == 0:
+                return (i, j) # row, col
+
+    return None
+
+def valid(board, n, pos):
+    # Check row
+    for i in range(len(board[0])):
+        if board[pos[0]][i] == n and pos[1] != i:
+            return False
+
+    # Check col
+    for i in range(len(board[0])):
+        if board[i][pos[1]] == n and pos[0] != i:
+            return False
+
+    # Check box
+    box_x = pos[1] // 3
+    box_y = pos[0] // 3
+
+    for i in range(box_y*3, box_y*3+3):
+        for j in range(box_x*3, box_x*3+3):
+            if board[i][j] == n and (i, j) != pos:
+                return False
+
+    return True
+
+def solve_board(board):
+
+    find = find_zero(board)
+    if not find:
+        return True
+    else:
+        row, col = find
+
+    for i in range(1, 10):
+        if valid(board, i, (row, col)):
+            board[row][col] = i
+
+            if solve_board(board):
+                return True
+
+            board[row][col] = 0
+
+    return False
+
+def print_board(board):
+    for i in range(9):
+        print(*board[i])
+
+
+#print_board(board)
+#print('')
+solve_board(board)
+
+finish = time.time()
+print_board(board)
+
+print('-')
+print(finish-start)
