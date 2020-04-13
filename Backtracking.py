@@ -240,8 +240,8 @@ solvequeen(x, board, 0)
 finish = time.time()
 print(count)
 print(finish-start)
-"""
 
+# April 13 2020
 # Problem 2580: Sudoku
 import sys, time
 board = []
@@ -314,3 +314,88 @@ print_board(board)
 
 print('-')
 print(finish-start)
+"""
+
+# Problem 14888: Insert Operator
+
+import sys
+
+# Initialize various lists
+integers = []
+operators = []
+result = []
+max_ = -1e9
+min_ = 1e9
+
+# Get inputs from user
+n = int(input())
+integers = list(map(int, sys.stdin.readline().split()))
+add, sub, mul, div = map(int, sys.stdin.readline().split())
+
+# Main function to calculate with each of the operators
+def calc(result, add, sub, mul, div, index):
+    global max_, min_
+    print('')
+    print(' ----------- function called ------------')
+    if index == n:
+        print('')
+        print('Inside IF')
+
+        max_ = max(result, max_)
+        min_ = min(result, min_)
+        print('End of IF')
+        return
+
+
+    else:
+        print('')
+        print('Inside ELSE')
+
+        if add:
+            print('Add:', result, ' + ', integers[index], 'Index: ', index)
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            calc(result+integers[index], add-1, sub, mul, div, index+1)
+            print('After backtracking // Index: ', index)
+            print('Backtrack = Add:', result, ' + ', integers[index])
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            print('-------------------')
+
+        if sub:
+            print('Sub:', result, ' - ', integers[index], 'Index: ', index)
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            calc(result-integers[index], add, sub-1, mul, div, index+1)
+            print('After backtracking // Index: ', index)
+            print('Backtrack = Sub:', result, ' - ', integers[index])
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            print('-------------------')
+
+        if mul:
+            print('Mul:', result, ' * ', integers[index], 'Index: ', index)
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            calc(result*integers[index], add, sub, mul-1, div, index+1)
+            print('After backtracking // Index: ', index)
+            print('Backtrack = Mul:', result, ' * ', integers[index])
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            print('-------------------')
+
+        if div:
+            print('Div:', result,' / ', integers[index], 'Index: ', index)
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            calc(int(result/integers[index]), add, sub, mul, div-1, index+1)
+            print('After backtracking // Index: ', index)
+            print('Backtrack = Div:', result, ' / ', integers[index])
+            print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
+            print('-------------------')
+        print('-----------------End of ELSE---------------')
+
+    print('----------------End of Function------------------')
+
+
+
+
+
+
+calc(integers[0], add, sub, mul, div, 1)
+
+print(max_)
+print(min_)
