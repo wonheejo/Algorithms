@@ -314,7 +314,7 @@ print_board(board)
 
 print('-')
 print(finish-start)
-"""
+
 
 # Problem 14888: Insert Operator
 
@@ -387,15 +387,65 @@ def calc(result, add, sub, mul, div, index):
             print('Add: {}, Sub: {}, Mul: {}, Div: {}'.format(add, sub, mul, div))
             print('-------------------')
         print('-----------------End of ELSE---------------')
-
     print('----------------End of Function------------------')
-
-
-
-
 
 
 calc(integers[0], add, sub, mul, div, 1)
 
 print(max_)
+print(min_)
+"""
+
+# Problem 14889: Start and Link
+
+import sys
+
+# Initialize
+n = int(sys.stdin.readline())
+skill = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+
+shuffle = [0 for i in range(n//2)]
+nums = [0 for i in range(n)]
+min_ = 9999999
+
+def get_points(link, start):
+    global min_
+    link_score= 0
+    start_score = 0
+    for i in range(len(link)):
+        for j in range(i+1, len(link)):
+            link_score += skill[link[i]][link[j]] + skill[link[j]][link[i]]
+            start_score += skill[start[i]][start[j]] + skill[start[j]][start[i]]
+
+    #print('Final score of Link:', link_score)
+    #print('Final score of Start:', start_score)
+    #print('Final score difference:', abs(link_score - start_score))
+    min_ = min(min_, abs(link_score - start_score))
+
+
+# Function to get the random team members
+def give_num(count, index):
+    if count == n//2:
+        start = []
+        link = []
+        for i in range(n):
+            if nums[i] == 1:
+                link.append(i)
+            else:
+                start.append(i)
+
+        #print('link team:', link)
+        #print('start team:', start)
+        get_points(link, start)
+
+        return
+
+    for i in range(index, n):
+        if nums[i] == 1:
+            continue
+        nums[i] = 1
+        give_num(count+1, i)
+        nums[i] = 0
+
+give_num(0, 1)
 print(min_)
