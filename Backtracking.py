@@ -433,9 +433,9 @@ def give_num(count, index):
                 link.append(i)
             else:
                 start.append(i)
-
-        #print('link team:', link)
-        #print('start team:', start)
+        print('nums list:', nums)
+        print('link team:', link)
+        print('start team:', start)
         get_points(link, start)
 
         return
