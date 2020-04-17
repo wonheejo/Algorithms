@@ -61,8 +61,9 @@ for i in test:
     fib1 = 0
     fib(i)
     print(fib0, fib1)
-"""
 
+
+# April 17th 2020
 # Problem 1904: 0 or 1 Tiles
 import sys
 sys.setrecursionlimit(1000001)
@@ -76,3 +77,27 @@ for i in range(3, n+1):
     fibseq[i] = (fibseq[i-1]%15746 + fibseq[i-2]%15746)%15746
 
 print(fibseq[n])
+"""
+
+# Problem 9461: Fadoban's Sequence
+
+import sys
+
+n = int(sys.stdin.readline())
+test_case = []
+for i in range(n):
+    test_case.append(int(sys.stdin.readline()))
+
+seq = [0 for i in range(101)]
+seq[1] = 1
+seq[2] = 1
+seq[3] = 1
+
+def fadoban(n):
+    for i in range(4, n+1):
+        seq[i] = seq[i-2] + seq[i-3]
+
+    return seq[n]
+
+for i in test_case:
+    print(fadoban(i))
