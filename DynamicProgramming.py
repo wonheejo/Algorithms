@@ -23,7 +23,7 @@ print(fib(n))
 #print(fibseq)
 finished = time.time()
 print(finished-start)
-"""
+
 
 # Problem 1003: Fibonacci no.3 Get number of 1s and 0s called
 
@@ -61,5 +61,18 @@ for i in test:
     fib1 = 0
     fib(i)
     print(fib0, fib1)
+"""
 
+# Problem 1904: 0 or 1 Tiles
+import sys
+sys.setrecursionlimit(1000001)
 
+n = int(sys.stdin.readline())
+fibseq = [0 for i in range(1000001)]
+fibseq[1] = 1
+fibseq[2] = 2
+
+for i in range(3, n+1):
+    fibseq[i] = (fibseq[i-1]%15746 + fibseq[i-2]%15746)%15746
+
+print(fibseq[n])
