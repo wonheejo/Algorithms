@@ -77,7 +77,7 @@ for i in range(3, n+1):
     fibseq[i] = (fibseq[i-1]%15746 + fibseq[i-2]%15746)%15746
 
 print(fibseq[n])
-"""
+
 
 # Problem 9461: Fadoban's Sequence
 
@@ -101,3 +101,25 @@ def fadoban(n):
 
 for i in test_case:
     print(fadoban(i))
+"""
+
+# April 22th 2020
+
+# Problem 1149: RGB street
+
+import sys
+sys.setrecursionlimit(10**6)
+
+houses = []
+n = int(sys.stdin.readline())
+for i in range(n):
+    houses.append(list(map(int, sys.stdin.readline().split())))
+cost = []
+
+for i in range(1, n):
+    houses[i][0] = min(houses[i-1][1], houses[i-1][2]) + houses[i][0]
+    houses[i][1] = min(houses[i-1][0], houses[i-1][2]) + houses[i][1]
+    houses[i][2] = min(houses[i-1][0], houses[i-1][1]) + houses[i][2]
+
+print(min(houses[n-1]))
+
