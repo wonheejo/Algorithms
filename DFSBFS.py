@@ -38,6 +38,7 @@ print(*bfs(s))
 
 
 # Problem 2606: Virus
+"""
 import sys
 
 n = int(sys.stdin.readline())
@@ -57,3 +58,55 @@ def dfs(start, visited):
     return len(visited)-1
 
 print(dfs(1, []))
+"""
+
+
+# Problem 2667: House number
+import sys
+
+n = int(sys.stdin.readline())
+graph = []
+visited = []
+result = []
+
+for i in range(n):
+    graph.append(list(map(int, list(sys.stdin.readline().strip()))))
+
+def bfs(graph, i, j, visited):
+
+    if graph[i][j] == 0:
+        visited.append([i, j])
+        return [0, visited]
+
+    block = []
+    queue = [[i, j]]
+
+    while queue:
+        [i, j] = queue.pop(0)
+        visited.append([i, j])
+        block.append([i, j])
+
+        if graph[i][j] == 1:
+            if i < (n-1) and graph[i+1][j] == 1 and [i+1, j] not in block and [i+1, j] not in queue:
+                queue.append([i+1, j])
+            if j < (n-1) and graph[i][j+1] == 1 and [i, j+1] not in block and [i, j+1] not in queue:
+                queue.append([i, j+1])
+            if j > 0 and graph[i][j-1] ==1 and [i, j-1] not in block and [i, j-1] not in queue:
+                queue.append([i, j-1])
+            if i > 0 and graph[i-1][j] ==1 and [i-1, j] not in block and [i-1, j] not in queue:
+                queue.append([i-1, j])
+
+    return [len(block), visited]
+
+for i in range(n):
+    for j in range(n):
+        if [i, j] not in visited:
+            [total, visited] = bfs(graph, i, j, visited)
+            if total != 0:
+                result.append(total)
+
+
+print(len(result))
+final = sorted(result)
+for i in range(len(result)):
+    print(final[i])
