@@ -101,7 +101,7 @@ def fadoban(n):
 
 for i in test_case:
     print(fadoban(i))
-"""
+
 
 # April 22th 2020
 
@@ -122,4 +122,25 @@ for i in range(1, n):
     houses[i][2] = min(houses[i-1][0], houses[i-1][1]) + houses[i][2]
 
 print(min(houses[n-1]))
+"""
 
+# Problem 1932: Triangle natural numbers
+import sys
+
+n = int(sys.stdin.readline())
+tri = []
+for i in range(n):
+    tri.append(list(map(int, sys.stdin.readline().split())))
+
+print(n)
+for i in range(n):
+    print(tri[i])
+
+sum = [tri[0]]
+
+def solve(index, left, right):
+
+    for i in range(n):
+
+
+solve(0, 0, 0)
