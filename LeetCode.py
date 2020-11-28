@@ -165,3 +165,180 @@ def climbStairs(self, n: int) -> int:
 	return recursion(n)
 
 """
+
+
+# November 26th 2020
+# Leetcode problem 121. Best time to buy and sell stocks
+"""
+def maxProfit(self, prices: List[int]) -> int:
+        
+        #print(prices)
+        
+        if len(prices) < 1:
+            return 0
+        else:
+            buy = prices[0]
+            buy_index = 0
+            sell_index = 0
+            sell = 0
+            profit = 0
+            best_profit = 0
+            
+            for i in range(1, len(prices)):
+                
+                if prices[i] < buy:
+                    buy = prices[i]
+                    
+                if prices[i] - buy > profit:
+                    profit = prices[i] - buy
+                
+                
+                best_profit = max(profit, best_profit)
+        
+        
+        if best_profit > 0:
+            return best_profit
+        else:
+            return 0
+
+"""
+
+# Leetcode problem 198. House Robber
+"""
+def rob(self, nums: List[int]) -> int:
+    
+	# If length of given array is 0 then just return 0. (no profit)
+    if len(nums) == 0:
+        return 0
+    # If length of array is less or equal to 2, just return the max value
+		# of the array
+    if len(nums) <= 2:
+        return max(nums)
+        
+    # Initially an empty array size of length of given array
+	# first element is same as first element of given array
+	# second element of dp is max value between first and second
+    dp = [0] * len(nums)
+    dp[0] = nums[0]
+    dp[1] = max(nums[0], nums[1])
+            
+	# Loop through length of given array starting from 2nd index and compare
+	# which is max value between i-1 value and i-2 value + current value 
+	# the higher value will then be added to the dp value for i. 
+    for i in range(2, len(nums)):
+        dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
+    
+	# return last value of dp array.            
+    return dp[-1]
+
+"""
+
+# Leetcode problem 303. Range Sum Qeury - Immutable
+# was a little bit and had to look up solutions for this....
+"""
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+        self.total = [0]
+        for i in nums:
+            self.total.append(self.total[-1]+i)
+
+    def sumRange(self, i: int, j: int) -> int:
+        
+        return self.total[j+1] - self.total[i]
+
+"""
+
+
+# Leetcode problem 392. Is subsequence
+"""
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        print(s, t)
+        
+        # to check the index in which the strings of string s were matched in string t
+        index_s = [0 for _ in range(len(s))]
+        string = [i for i in t]
+        count = 0
+        
+        print('Length of s: {}, Length of t: {}'.format(len(s), len(t)))
+        print('string: ',string)
+        # if length is equal to 0 just return true
+        if len(s) == 0:
+            return True
+        else: # else go into the loop to find the matches
+            for i in range(len(s)):
+                # temp is the variable to compare from string s
+                temp = s[i]
+                # index is the point where the next loop will start off which is the
+                # last point in which there was a match
+                index = index_s[i-1]
+                total_len = len(t)
+                
+                # loop through string t starting off at index until total length - count
+                while index < total_len-count:
+                    temp2 = string[index]
+                    
+                    # if first and second temp match and index_s at i is 0 then switch
+                    # from 0 to the index while popping from string list
+                    if temp == temp2 and index_s[i] == 0:
+                        index_s[i] = index
+                        count += 1
+                        string.pop(index)
+                    else:
+                        index += 1
+               
+                        
+                        
+            #print(index_s)
+            if count == len(s):
+                check = sorted(index_s)
+                print('Index list: ',index_s)
+                if check == index_s:
+                    return True
+            else:
+                return False
+
+"""
+
+# Leetcode problem 746. Min cost climbing stairs
+"""
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        
+        # added an extra length of 0 for easier calculations for array for saving value and given array
+        mincost = [0] * (len(cost)+1)
+        cost.append(int(0))
+        
+        # if length of given array is 2 then return minimal value of two
+        if len(cost) == 2:
+            return min(cost)
+        else:
+            # initialize the array for saving value
+            mincost[0] = cost[0]
+            mincost[1] = cost[1]
+            
+            for i in range(2, len(cost)):
+                #print("Mincost[{}] = min({}, {}+{})".format(i, mincost[i-1], mincost[i-2], cost[i]))
+                # the minimal value of adding between i-1 and i-2 is added into the array for saving values
+                mincost[i] = min(mincost[i-1] + cost[i], mincost[i-2] + cost[i])
+                
+                #print('Array Mincost = ', mincost)
+                
+            # return last value of array which is the value thats added up
+            return mincost[-1]
+
+"""
+
+# Leetcode problem 1024. Divisor Game
+"""
+class Solution:
+    def divisorGame(self, N: int) -> bool:
+        
+        if N % 2 == 0:
+            return True
+        else:
+            return False
+
+"""
